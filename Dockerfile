@@ -11,7 +11,9 @@ RUN apk update ; apk upgrade && \
     mv sailor/src/* /usr/share/lua/5.1/ && \
     rm -r sailor && apk del git gcc musl-dev
 
-RUN mkdir -p /usr/local/share/lua && ln -s /usr/share/lua/5.1 /usr/local/share/lua/
+RUN mkdir -p /usr/local/share/lua && \
+    ln -s /usr/share/lua/common/* /usr/share/lua/5.1/ && \
+    ln -s /usr/share/lua/5.1 /usr/local/share/lua/
 
 RUN mkdir /run/nginx ; \
     echo 'daemon off;' >> /etc/nginx/nginx.conf
